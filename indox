@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>피싱 모의 훈련 안내</title>
+    <!-- Tailwind CSS (디자인용) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Pretendard', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+    <div class="bg-white max-w-md w-full rounded-2xl shadow-lg p-8 text-center border-t-4 border-blue-500">
+        <!-- 아이콘 -->
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+        </div>
+
+        <!-- 텍스트 내용 -->
+        <h1 class="text-2xl font-bold text-gray-800 mb-4">안내 페이지</h1>
+        <p class="text-gray-600 mb-8 leading-relaxed">
+            확인해 주셔서 감사합니다.<br>
+            아래 버튼을 클릭하시면 원래 진행 중이던<br>설문조사 화면으로 돌아갑니다.
+        </p>
+
+        <!-- ★ 핵심 해결 부분: target="_top" 을 추가하여 iframe 탈출 ★ -->
+        <a href="https://docs.google.com/forms/d/1WEfvH9qZ1EWefGqlJwyL6fPb4i8zq9mV7lVHXIy425A/viewform" 
+           target="_top" 
+           class="inline-block w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-200 shadow-md">
+            설문조사로 돌아가기
+        </a>
+        
+        <p class="mt-4 text-xs text-gray-400">버튼이 작동하지 않는 경우, 뒤로가기를 눌러주세요.</p>
+    </div>
+
+</body>
+</html>
+```eof
+에러 원인을 확인했습니다. 구문 오류가 발생하는 이유는 HTML 코드를 스크립트(.gs) 파일에 붙여넣으셨기 때문입니다.
+
+위의 파일을 적용하기 위해 다음 단계를 진행해 주세요.
+
+1.  현재 오류가 나고 있는 `설문조사 링크.gs` 파일을 삭제합니다. (파일명 옆의 ︙ 점 세 개 버튼 클릭 후 삭제)
+2.  파일 목록(왼쪽 사이드바) 상단의 **[+] 버튼**을 클릭합니다.
+3.  **[HTML]**을 선택합니다.
+4.  파일 이름을 `Index` 또는 `설문조사 링크` 등으로 지정합니다. (확장자는 자동으로 `.html`이 됩니다)
+5.  새로 만들어진 HTML 파일 안에 위의 코드 전체를 복사하여 붙여넣고 저장(Ctrl+S)합니다.
+6.  `Code.gs` 파일(또는 처음에 만들어진 `.gs` 파일)에는 다음 코드가 들어가야 합니다.
+
+```javascript
+function doGet() {
+  return HtmlService.createHtmlOutputFromFile('방금_만든_HTML_파일_이름')
+      .setTitle('피싱 모의 훈련 안내')
+      .addMetaTag('viewport', 'width=device-width, initial-scale=1');
+}
